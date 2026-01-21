@@ -3,14 +3,17 @@ package giada_tonni.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "eventi")
 public class Evento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long evento_id;
+    @GeneratedValue
+    @Column(name = "evento_id")
+    private UUID eventoId;
 
     @Column(name = "titolo", nullable = false, length = 30)
     private String titolo;
@@ -28,6 +31,8 @@ public class Evento {
     @Column(name = "max_persone", nullable = false)
     private int maxPersone;
 
+    @OneToMany(mappedBy = "evento")
+    private List<Partecipazione> listaPartecipazioni;
 
     // COSTRUTTORI
 
@@ -43,8 +48,8 @@ public class Evento {
 
     // GETTER E SETTER
 
-    public long getId() {
-        return evento_id;
+    public UUID getId() {
+        return eventoId;
     }
 
     public String getTitolo() {
@@ -93,7 +98,7 @@ public class Evento {
     @Override
     public String toString() {
         return "Evento{" +
-                "id=" + evento_id +
+                "id=" + eventoId +
                 ", titolo='" + titolo + '\'' +
                 ", dataEvento=" + dataEvento +
                 ", descrizione='" + descrizione + '\'' +

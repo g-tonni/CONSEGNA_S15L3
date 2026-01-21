@@ -7,6 +7,9 @@
                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
     <persistence-unit name="consegnas15l3pu">
         <class>giada_tonni.entities.Evento</class>
+        <class>giada_tonni.entities.Location</class>
+        <class>giada_tonni.entities.Partecipazione</class>
+        <class>giada_tonni.entities.Persona</class>
         <properties>
             <property name="jakarta.persistence.jdbc.url"
                       value="jdbc:postgresql://localhost:5432/consegnas15l3"/>

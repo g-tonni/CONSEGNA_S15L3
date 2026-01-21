@@ -5,6 +5,8 @@ import giada_tonni.exception.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
+import java.util.UUID;
+
 public class EventiDAO {
 
      private final EntityManager entityManager;
@@ -30,15 +32,15 @@ public class EventiDAO {
          System.out.println("Evento salvato");
      }
 
-     public Evento findById(long id) throws NotFoundException {
-         Evento found = entityManager.find(Evento.class, id);
+     public Evento findEventoById(String id) throws NotFoundException {
+         Evento found = entityManager.find(Evento.class, UUID.fromString(id));
          if(found == null) throw new NotFoundException(id);
          return found;
      }
 
-     public void deleteById(long id){
+     public void deleteEventoById(String id){
          // 1. Trovare l'evento da eliminare
-         Evento found = this.findById(id);
+         Evento found = this.findEventoById(id);
 
          // 2. Creare una transazione
          EntityTransaction transaction = entityManager.getTransaction();
