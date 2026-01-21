@@ -74,6 +74,10 @@ public class Persona {
         this.sesso = sesso;
     }
 
+    public List<Partecipazione> getListaPartecipazioni() {
+        return listaPartecipazioni;
+    }
+
     @Override
     public String toString() {
         return "Persona{" +

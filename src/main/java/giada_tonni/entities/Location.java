@@ -2,6 +2,7 @@ package giada_tonni.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -18,6 +19,9 @@ public class Location {
 
     @Column(name = "citta")
     private String citta;
+
+    @OneToMany(mappedBy = "location")
+    private List<Evento> listaEventi;
 
     public Location(){}
 
@@ -44,6 +48,10 @@ public class Location {
 
     public void setCitta(String citta) {
         this.citta = citta;
+    }
+
+    public List<Evento> getListaEventi() {
+        return listaEventi;
     }
 
     @Override

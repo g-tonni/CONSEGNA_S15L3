@@ -34,16 +34,21 @@ public class Evento {
     @OneToMany(mappedBy = "evento")
     private List<Partecipazione> listaPartecipazioni;
 
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
+
     // COSTRUTTORI
 
     public Evento(){}
 
-    public Evento(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int maxPersone) {
+    public Evento(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int maxPersone, Location location) {
         this.titolo = titolo;
         this.dataEvento = dataEvento;
         this.descrizione = descrizione;
         this.tipoEvento = tipoEvento;
         this.maxPersone = maxPersone;
+        this.location = location;
     }
 
     // GETTER E SETTER
@@ -92,18 +97,26 @@ public class Evento {
         this.maxPersone = maxPersone;
     }
 
-    // STAMPA
+    public Location getLocation() {
+        return location;
+    }
 
+    public List<Partecipazione> getListaPartecipazioni() {
+        return listaPartecipazioni;
+    }
+
+    // STAMPA
 
     @Override
     public String toString() {
         return "Evento{" +
-                "id=" + eventoId +
+                "eventoId=" + eventoId +
                 ", titolo='" + titolo + '\'' +
                 ", dataEvento=" + dataEvento +
                 ", descrizione='" + descrizione + '\'' +
                 ", tipoEvento=" + tipoEvento +
                 ", maxPersone=" + maxPersone +
+                ", location=" + location +
                 '}';
     }
 }
